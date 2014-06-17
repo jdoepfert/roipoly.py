@@ -1,6 +1,20 @@
 * roipoly.py
 
-Select a polygonal region of interest, similar to the roipoly function
-present in the image processing toolbox from MATLAB.
+Small python module to select a polygonal region of interest (ROI) in
+an image that stored as a numpy array. The usage is similar to the
+[[http://www.mathworks.de/de/help/images/ref/roipoly.html][roipoly]] function present in the image processing toolbox from MATLAB.
 
+** Run example
+1. Copy the files ~roipoly.py~ and ~example.py~ to a directory.
+2. Switch to that directory and run the example using
+#+begin_SRC shell
+python example.py
+#+end_SRC
 ** Usage
+1. Copy the file ~roipoly.py~ to your working directory or add it to PYTHONPATH.
+2. Import the roipoly module using
+#+begin_SRC python 
+from roipoly import roipoly
+#+end_SRC
+1. 
+2. 
