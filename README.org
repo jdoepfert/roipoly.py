@@ -3,18 +3,38 @@
 Small python module to select a polygonal region of interest (ROI) in
 an image that stored as a numpy array. The usage is similar to the
 [[http://www.mathworks.de/de/help/images/ref/roipoly.html][roipoly]] function present in the image processing toolbox from MATLAB.
+** Requirements
+The module requires the python modules ~numpy~ and ~matplotlib~ to work.
 
 ** Run example
-1. Copy the files ~roipoly.py~ and ~example.py~ to a directory.
-2. Switch to that directory and run the example using
++ Copy the files ~roipoly.py~ and ~example.py~ to a directory.
++ Switch to that directory and run the example from the shell using 
 #+begin_SRC shell
 python example.py
 #+end_SRC
 ** Usage
-1. Copy the file ~roipoly.py~ to your working directory or add it to PYTHONPATH.
-2. Import the roipoly module using
+*** Installation
+Copy the file ~roipoly.py~ to your working directory or add it to PYTHONPATH.
+
+*** Creating a ROI
+Import the roipoly module in a new python file using
 #+begin_SRC python 
 from roipoly import roipoly
 #+end_SRC
-1. 
-2. 
+To draw a ROI within an image, first save that image as a numpy array
+and then show using e.g. pylabs's =imshow=:
+#+begin_SRC python 
+import pylab as pl
+pl.imshow(image) 
+#+end_SRC
+Then let the user draw a polygonal ROI:
+#+begin_SRC python 
+ROI = roipoly(roicolor='r')
+#+end_SRC
+The user can now interactively draw a polygon in the image by clicking
+with the left mouse button to select the vertices of the polygon.
+The optional argument ~roicolor~ defines the color of the ROI.
+
+*** Displaying a ROI
+
+*** Extracting the 
