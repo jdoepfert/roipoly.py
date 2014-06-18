@@ -12,5 +12,4 @@ core.*
 *.pdf
 *.xml
 *.org-source
-*.png
 *.toc
