@@ -3,10 +3,13 @@
 Small python module to select a polygonal region of interest (ROI) in
 an image that stored as a numpy array. The usage is similar to the
 [[http://www.mathworks.de/de/help/images/ref/roipoly.html][roipoly]] function present in the image processing toolbox from MATLAB.
+
+[[file:/img/ROIs.PNG]]
+
 ** Requirements
 The module requires the python modules ~numpy~ and ~matplotlib~ to work.
 
-** Run example
+** Running the example
 + Copy the files ~roipoly.py~ and ~example.py~ to a directory.
 + Switch to that directory and run the example from the shell using 
 #+begin_SRC shell
@@ -21,8 +24,7 @@ Import the roipoly module in a new python file using
 #+begin_SRC python 
 from roipoly import roipoly
 #+end_SRC
-To draw a ROI within an image, first save that image as a numpy array
-and then show using e.g. pylabs's =imshow=:
+To draw a ROI within an image present as a numpy array,  show it using e.g. pylabs's =imshow=:
 #+begin_SRC python 
 import pylab as pl
 pl.imshow(image) 
@@ -37,4 +39,4 @@ The optional argument ~roicolor~ defines the color of the ROI.
 
 *** Displaying a ROI
 
-*** Extracting the 
+*** Extracting a binary signal mask 
