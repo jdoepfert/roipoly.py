@@ -45,7 +45,7 @@ class roipoly:
             plt.show()
 
     def getMask(self, currentImage):
-        nx, ny = np.shape(currentImage)
+        ny, nx = np.shape(currentImage)
         poly_verts = [(self.allxpoints[0], self.allypoints[0])]
         for i in range(len(self.allxpoints)-1, -1, -1):
             poly_verts.append((self.allxpoints[i], self.allypoints[i]))
@@ -57,7 +57,7 @@ class roipoly:
         points = np.vstack((x,y)).T
 
         ROIpath = mplPath.Path(poly_verts)
-        grid = ROIpath.contains_points(points).reshape((nx,ny))
+        grid = ROIpath.contains_points(points).reshape((ny,nx))
         return grid
       
     def displayROI(self,**linekwargs):
