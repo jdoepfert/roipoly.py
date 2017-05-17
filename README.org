@@ -9,54 +9,57 @@ an image that is stored as a numpy array. The usage is similar to the
 ** Requirements
 The module requires the python modules ~numpy~ and ~matplotlib~ to work.
 
-** Running the example
-+ Copy the files ~roipoly.py~ and ~example.py~ to a directory.
-+ Switch to that directory and run the example from the shell using 
+** Installation
+#+begin_SRC shell
+pip install --user git+https://github.com/jdoepfert/roipoly.py.git
+#+end_SRC
+
+** Usage
+
+*** Running the example
++ Download and run example.py: 
 #+begin_SRC shell
 python example.py
 #+end_SRC
-** Usage
-*** Installation
-Copy the file ~roipoly.py~ to your working directory or add it to PYTHONPATH.
 
 *** Creating a ROI
 In your python code, import the roipoly module using
-#+begin_SRC python 
+#+begin_SRC python
 from roipoly import roipoly
 #+end_SRC
 To draw a ROI within an image present as a numpy array,  show it first
 using e.g. pylabs's =imshow=:
-#+begin_SRC python 
+#+begin_SRC python
 import pylab as pl
-pl.imshow(image) 
+pl.imshow(image)
 #+end_SRC
 Then let the user draw a polygonal ROI within that image:
-#+begin_SRC python 
+#+begin_SRC python
 MyROI = roipoly(roicolor='r') # draw new ROI in red color
 #+end_SRC
 This lets the user interactively draw a polygon within the image by clicking
 with the left mouse button to select the vertices of the polygon. To
 close the polygon, click with the right mouse button. After finishing
 the ROI, the current figure is closed so that the execution of the code
-can continue. 
+can continue.
 
 
 *** Displaying a ROI
 To display a created ROI within an image, first display the image as
-described above using e.g. =imshow=. Then, 
- #+begin_SRC python 
-MyROI.displayROI() 
+described above using e.g. =imshow=. Then,
+ #+begin_SRC python
+MyROI.displayROI()
 #+end_SRC
-shows the created ROI on top of this image. 
+shows the created ROI on top of this image.
 
 To display multiple ROIs, use e.g. list comprehensions:
-#+begin_SRC python 
+#+begin_SRC python
 [x.displayROI() for x in [MyROI1, MyROI2, MyROI3]]
 #+end_SRC
 
 To additionally show the mean pixel grey value inside a ROI in the
 image, type
-#+begin_SRC python 
+#+begin_SRC python
 MyROI.displayMean(image)
 #+end_SRC
 
@@ -65,13 +68,13 @@ The function =getMask(image)= creates a binary mask for a certain ROI
 instance, that is, a 2D numpy array of the size of the image array,
 whose elements are =True= if they lie inside the ROI polygon,
 and =False= otherwise.
-#+begin_SRC python 
+#+begin_SRC python
 mask = MyROI.getMask(image)
 pl.imshow(mask) # show the binary signal mask
 #+end_SRC
 
 This mask image can be used to e.g. calculate the mean pixel intensity
 in an image over that ROI:
-#+begin_SRC python 
+#+begin_SRC python
 Mean = pl.mean(image[mask])
 #+end_SRC
