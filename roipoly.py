@@ -9,10 +9,14 @@ Kornhauser.
 '''
 
 import sys
+import logging
 
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.path as mplPath
+
+
+logger = logging.getLogger(__name__)
 
 
 class Roipoly():
