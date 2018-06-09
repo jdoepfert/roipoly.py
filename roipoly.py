@@ -8,19 +8,20 @@ Kornhauser.
 
 '''
 
+import sys
 
 import numpy as np
-import sys
 import matplotlib.pyplot as plt
 import matplotlib.path as mplPath
 
-class roipoly:
 
-    def __init__(self, fig=[], ax=[], roicolor='b'):
-        if fig == []:
+class Roipoly():
+
+    def __init__(self, fig=None, ax=None, roicolor='b'):
+        if fig is None:
             fig = plt.gcf()
 
-        if ax == []:
+        if ax is None:
             ax = plt.gca()
 
         self.previous_point = []
@@ -32,7 +33,6 @@ class roipoly:
         self.roicolor = roicolor
         self.fig = fig
         self.ax = ax
-        #self.fig.canvas.draw()
 
         self.__ID1 = self.fig.canvas.mpl_connect(
             'motion_notify_event', self.__motion_notify_callback)
@@ -44,8 +44,8 @@ class roipoly:
         else:
             plt.show()
 
-    def getMask(self, currentImage):
-        ny, nx = np.shape(currentImage)
+    def get_mask(self, current_image):
+        ny, nx = np.shape(current_image)
         poly_verts = [(self.allxpoints[0], self.allypoints[0])]
         for i in range(len(self.allxpoints)-1, -1, -1):
             poly_verts.append((self.allxpoints[i], self.allypoints[i]))
@@ -56,11 +56,11 @@ class roipoly:
         x, y = x.flatten(), y.flatten()
         points = np.vstack((x,y)).T
 
-        ROIpath = mplPath.Path(poly_verts)
-        grid = ROIpath.contains_points(points).reshape((ny,nx))
+        roi_path = mplPath.Path(poly_verts)
+        grid = roi_path.contains_points(points).reshape((ny,nx))
         return grid
       
-    def displayROI(self,**linekwargs):
+    def display_roi(self, **linekwargs):
         l = plt.Line2D(self.allxpoints +
                      [self.allxpoints[0]],
                      self.allypoints +
@@ -70,18 +70,17 @@ class roipoly:
         ax.add_line(l)
         plt.draw()
 
-    def displayMean(self,currentImage, **textkwargs):
-        mask = self.getMask(currentImage)
-        meanval = np.mean(np.extract(mask, currentImage))
-        stdval = np.std(np.extract(mask, currentImage))
-        string = "%.3f +- %.3f" % (meanval, stdval)
+    def display_mean(self, current_image, **textkwargs):
+        mask = self.get_mask(current_image)
+        mean = np.mean(np.extract(mask, current_image))
+        std = np.std(np.extract(mask, current_image))
+        string = "%.3f +- %.3f" % (mean, std)
         plt.text(self.allxpoints[0], self.allypoints[0],
                  string, color=self.roicolor,
                  bbox=dict(facecolor='w', alpha=0.6), **textkwargs)
 
     def __motion_notify_callback(self, event):
         if event.inaxes:
-            ax = event.inaxes
             x, y = event.xdata, event.ydata
             if (event.button == None or event.button == 1) and self.line != None: # Move line around
                 self.line.set_data([self.previous_point[0], x],
@@ -119,8 +118,8 @@ class roipoly:
                     self.fig.canvas.draw()
             elif ((event.button == 1 and event.dblclick==True) or
                   (event.button == 3 and event.dblclick==False)) and self.line != None: # close the loop and disconnect
-                self.fig.canvas.mpl_disconnect(self.__ID1) #joerg
-                self.fig.canvas.mpl_disconnect(self.__ID2) #joerg
+                self.fig.canvas.mpl_disconnect(self.__ID1)
+                self.fig.canvas.mpl_disconnect(self.__ID2)
                         
                 self.line.set_data([self.previous_point[0],
                                     self.start_point[0]],
