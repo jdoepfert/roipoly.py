@@ -28,7 +28,7 @@ def deprecation(message):
 class RoiPoly:
 
     def __init__(self, fig=None, ax=None, color='b',
-                 roicolor=None):
+                 roicolor=None, show_fig=True):
 
         if roicolor is not None:
             deprecation("Use 'color' instead of 'roicolor'!")
@@ -50,11 +50,17 @@ class RoiPoly:
         self.fig = fig
         self.ax = ax
 
+        # Mouse event callbacks
         self.__cid1 = self.fig.canvas.mpl_connect(
             'motion_notify_event', self.__motion_notify_callback)
         self.__cid2 = self.fig.canvas.mpl_connect(
             'button_press_event', self.__button_press_callback)
 
+        if show_fig:
+            self.show_figure()
+
+    @staticmethod
+    def show_figure():
         if sys.flags.interactive:
             plt.show(block=False)
         else:
