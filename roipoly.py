@@ -68,10 +68,8 @@ class RoiPoly:
 
     def get_mask(self, current_image):
         ny, nx = np.shape(current_image)
-        poly_verts = [(self.x[0], self.y[0])]
-        for i in range(len(self.x) - 1, -1, -1):
-            poly_verts.append((self.x[i], self.y[i]))
-
+        poly_verts = ([(self.x[0], self.y[0])]
+                      + list(zip(reversed(self.x), reversed(self.y))))
         # Create vertex coordinates for each grid cell...
         # (<0,0> is at the top left of the grid in this system)
         x, y = np.meshgrid(np.arange(nx), np.arange(ny))
@@ -89,10 +87,14 @@ class RoiPoly:
         ax.add_line(line)
         plt.draw()
 
-    def display_mean(self, current_image, **textkwargs):
+    def get_mean_and_std(self, current_image):
         mask = self.get_mask(current_image)
         mean = np.mean(np.extract(mask, current_image))
         std = np.std(np.extract(mask, current_image))
+        return mean, std
+
+    def display_mean(self, current_image, **textkwargs):
+        mean, std = self.get_mean_and_std(current_image)
         string = "%.3f +- %.3f" % (mean, std)
         plt.text(self.x[0], self.y[0],
                  string, color=self.color,
@@ -117,10 +119,8 @@ class RoiPoly:
             if event.button == 1 and event.dblclick is False:
                 logger.debug("Received single left mouse button click")
                 if self.line is None:  # If there is no line, create a line
-                    self.line = plt.Line2D([x, x],
-                                           [y, y],
-                                           marker='o',
-                                           color=self.color)
+                    self.line = plt.Line2D([x, x], [y, y],
+                                           marker='o', color=self.color)
                     self.start_point = [x, y]
                     self.previous_point = self.start_point
                     self.x = [x]
