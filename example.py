@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 logging.basicConfig(format='%(levelname)s ''%(processName)-10s : %(asctime)s '
                            '%(module)s.%(funcName)s:%(lineno)s %(message)s',
-                    level=logging.DEBUG)
+                    level=logging.INFO)
 
 # Create image
 img = np.ones((100, 100)) * range(0, 100)
