@@ -1,9 +1,15 @@
 import unittest
+import os
 
 import numpy as np
 from matplotlib import pyplot as plt
+import matplotlib
 
 from roipoly import RoiPoly
+
+if os.environ.get('DISPLAY', '') == '':
+    print('No DISPLAY found. Using non-interactive "Agg" backend.')
+    matplotlib.use('Agg')
 
 
 class TestRoiPoly(unittest.TestCase):
