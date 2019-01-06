@@ -8,4 +8,4 @@ install:
 - pip install -r requirements.txt
 
 script:
-  - nosetests -v tests/
+  - nosetests -v tests.py
