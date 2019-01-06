@@ -22,17 +22,17 @@ Copy the file ~roipoly.py~ to your working directory or add it to PYTHONPATH.
 *** Creating a ROI
 In your python code, import the roipoly module using
 #+begin_SRC python 
-from roipoly import roipoly
+from roipoly import RoiPoly
 #+end_SRC
 To draw a ROI within an image present as a numpy array,  show it first
 using e.g. pylabs's =imshow=:
 #+begin_SRC python 
-import pylab as pl
-pl.imshow(image) 
+from matplotlib import pyplot as plt
+plt.imshow(image)
 #+end_SRC
 Then let the user draw a polygonal ROI within that image:
 #+begin_SRC python 
-MyROI = roipoly(roicolor='r') # draw new ROI in red color
+my_roi = RoiPoly(color='r') # draw new ROI in red color
 #+end_SRC
 This lets the user interactively draw a polygon within the image by clicking
 with the left mouse button to select the vertices of the polygon. To
@@ -45,19 +45,19 @@ can continue.
 To display a created ROI within an image, first display the image as
 described above using e.g. =imshow=. Then, 
  #+begin_SRC python 
-MyROI.displayROI() 
+my_roi.display_roi()
 #+end_SRC
 shows the created ROI on top of this image. 
 
 To display multiple ROIs, use e.g. list comprehensions:
 #+begin_SRC python 
-[x.displayROI() for x in [MyROI1, MyROI2, MyROI3]]
+[x.display_roi() for x in [my_roi1, my_roi2, my_roi3]]
 #+end_SRC
 
 To additionally show the mean pixel grey value inside a ROI in the
 image, type
 #+begin_SRC python 
-MyROI.displayMean(image)
+my_roi.display_mean(image)
 #+end_SRC
 
 *** Extracting a binary mask image
@@ -66,12 +66,12 @@ instance, that is, a 2D numpy array of the size of the image array,
 whose elements are =True= if they lie inside the ROI polygon,
 and =False= otherwise.
 #+begin_SRC python 
-mask = MyROI.getMask(image)
-pl.imshow(mask) # show the binary signal mask
+mask = my_roi.get_mask(image)
+plt.imshow(mask) # show the binary signal mask
 #+end_SRC
 
 This mask image can be used to e.g. calculate the mean pixel intensity
 in an image over that ROI:
 #+begin_SRC python 
-Mean = pl.mean(image[mask])
+mean = plt.mean(image[mask])
 #+end_SRC

@@ -1,38 +1,50 @@
-import pylab as pl
-from roipoly import roipoly 
+import logging
 
-# create image
-img = pl.ones((100, 100)) * range(0, 100)
+import numpy as np
+from matplotlib import pyplot as plt
 
-# show the image
-pl.imshow(img, interpolation='nearest', cmap="Greys")
-pl.colorbar()
-pl.title("left click: line segment         right click: close region")
+from roipoly import RoiPoly
 
-# let user draw first ROI
-ROI1 = roipoly(roicolor='r') #let user draw first ROI
+logger = logging.getLogger(__name__)
 
-# show the image with the first ROI
-pl.imshow(img, interpolation='nearest', cmap="Greys")
-pl.colorbar()
-ROI1.displayROI()
-pl.title('draw second ROI')
+logging.basicConfig(format='%(levelname)s ''%(processName)-10s : %(asctime)s '
+                           '%(module)s.%(funcName)s:%(lineno)s %(message)s',
+                    level=logging.INFO)
 
-# let user draw second ROI
-ROI2 = roipoly(roicolor='b') #let user draw ROI
+# Create image
+img = np.ones((100, 100)) * range(0, 100)
 
-# show the image with both ROIs and their mean values
-pl.imshow(img, interpolation='nearest', cmap="Greys")
-pl.colorbar()
-[x.displayROI() for x in [ROI1, ROI2]]
-[x.displayMean(img) for x in [ROI1, ROI2]]
-pl.title('The two ROIs')
-pl.show()
+# Show the image
+fig = plt.figure()
+plt.imshow(img, interpolation='nearest', cmap="Greys")
+plt.colorbar()
+plt.title("left click: line segment         right click: close region")
+plt.show(block=False)
 
-# show ROI masks
-pl.imshow(ROI1.getMask(img) + ROI2.getMask(img),
-          interpolation='nearest', cmap="Greys")
-pl.title('ROI masks of the two ROIs')
-pl.show()
+# Let user draw first ROI
+roi1 = RoiPoly(color='r', fig=fig)
 
+# Show the image with the first ROI
+fig = plt.figure()
+plt.imshow(img, interpolation='nearest', cmap="Greys")
+plt.colorbar()
+roi1.display_roi()
+plt.title('draw second ROI')
+plt.show(block=False)
 
+# Let user draw second ROI
+roi2 = RoiPoly(color='b', fig=fig)
+
+# Show the image with both ROIs and their mean values
+plt.imshow(img, interpolation='nearest', cmap="Greys")
+plt.colorbar()
+[x.display_roi() for x in [roi1, roi2]]
+[x.display_mean(img) for x in [roi1, roi2]]
+plt.title('The two ROIs')
+plt.show()
+
+# Show ROI masks
+plt.imshow(roi1.get_mask(img) + roi2.get_mask(img),
+           interpolation='nearest', cmap="Greys")
+plt.title('ROI masks of the two ROIs')
+plt.show()
