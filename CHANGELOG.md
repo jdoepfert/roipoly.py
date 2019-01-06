@@ -1,6 +1,9 @@
 # Changelog
 
-## [unreleased] - 2018-06-09
+## [unreleased] - 2019-XX-XX
 * add requirements.txt
-* add versioning
+* adhere to pep8
+* code restructuring
+* add initial tests
+* introduce logging
 * add CI
