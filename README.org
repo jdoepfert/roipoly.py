@@ -9,6 +9,9 @@ an image that is stored as a numpy array. The usage is similar to the
 ** Requirements
 The module requires the python modules ~numpy~ and ~matplotlib~ to work.
 
+** Installation
+Run ~pip install git+https://github.com/jdoepfert/roipoly.py~.
+
 ** Running the example
 + Copy the files ~roipoly.py~ and ~example.py~ to a directory.
 + Switch to that directory and run the example from the shell using 
@@ -16,9 +19,6 @@ The module requires the python modules ~numpy~ and ~matplotlib~ to work.
 python example.py
 #+end_SRC
 ** Usage
-*** Installation
-Copy the file ~roipoly.py~ to your working directory or add it to PYTHONPATH.
-
 *** Creating a ROI
 In your python code, import the roipoly module using
 #+begin_SRC python 
