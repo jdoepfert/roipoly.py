@@ -75,3 +75,6 @@ in an image over that ROI:
 #+begin_SRC python 
 mean = plt.mean(image[mask])
 #+end_SRC
+
+** Credits
+Based on a code snippet originally posted by Daniel Kornhauser.
