@@ -1,6 +1,7 @@
 # Changelog
 
 ## [unreleased] - 2019-XX-XX
+* make installable package
 
 ## [0.1.0] - 2019-01-06
 * add requirements.txt
