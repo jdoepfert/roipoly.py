@@ -13,7 +13,7 @@ The module requires the python modules ~numpy~ and ~matplotlib~ to work.
 Run ~pip install git+https://github.com/jdoepfert/roipoly.py~.
 
 ** Running the example
-+ Copy the files ~roipoly.py~ and ~example.py~ to a directory.
++ Copy the file ~example.py~ to a directory.
 + Switch to that directory and run the example from the shell using 
 #+begin_SRC shell
 python example.py
