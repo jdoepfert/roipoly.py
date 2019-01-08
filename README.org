@@ -6,9 +6,6 @@ an image that is stored as a numpy array. The usage is similar to the
 
 [[file:/img/ROIs.PNG]]
 
-** Requirements
-The module requires the python modules ~numpy~ and ~matplotlib~ to work.
-
 ** Installation
 Run ~pip install git+https://github.com/jdoepfert/roipoly.py~.
 
