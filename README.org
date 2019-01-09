@@ -46,9 +46,10 @@ my_roi.display_roi()
 #+end_SRC
 shows the created ROI on top of this image. 
 
-To display multiple ROIs, use e.g. list comprehensions:
+Display multiple ROIs like so:
 #+begin_SRC python 
-[x.display_roi() for x in [my_roi1, my_roi2, my_roi3]]
+for r in [my_roi1, my_roi2, my_roi3]
+    r.display_roi()
 #+end_SRC
 
 To additionally show the mean pixel grey value inside a ROI in the
@@ -58,7 +59,7 @@ my_roi.display_mean(image)
 #+end_SRC
 
 *** Extracting a binary mask image
-The function =getMask(image)= creates a binary mask for a certain ROI
+The function =get_mask(image)= creates a binary mask for a certain ROI
 instance, that is, a 2D numpy array of the size of the image array,
 whose elements are =True= if they lie inside the ROI polygon,
 and =False= otherwise.
