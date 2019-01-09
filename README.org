@@ -75,4 +75,4 @@ mean = plt.mean(image[mask])
 #+end_SRC
 
 ** Credits
-Based on a code snippet originally posted by Daniel Kornhauser.
+Based on a code snippet originally posted [[http://matplotlib.1069221.n5.nabble.com/How-to-draw-a-region-of-interest-td4972.html][here]]  by Daniel Kornhauser.
