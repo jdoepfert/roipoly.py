@@ -12,11 +12,11 @@ an image that is stored as a numpy array. The usage is similar to the
 Run ~pip install git+https://github.com/jdoepfert/roipoly.py~.
 
 ** Running the example
-+ Copy the file ~example.py~ to a directory.
-+ Switch to that directory and run the example from the shell using 
+Copy the example you want to run from the ~examples~ directory and run it e.g. like so:
 #+begin_SRC shell
 python example.py
 #+end_SRC
+
 ** Usage
 *** Creating a ROI
 In your python code, import the roipoly module using
