@@ -1,3 +1,5 @@
+[[file:https://travis-ci.org/jdoepfert/roipoly.py.svg?branch=master]]
+
 * roipoly.py
 
 Small python module to select a polygonal region of interest (ROI) in
