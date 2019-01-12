@@ -11,8 +11,6 @@ from matplotlib import pyplot as plt
 from roipoly import RoiPoly
 
 
-
-
 class TestRoiPoly(unittest.TestCase):
 
     def setUp(self):
