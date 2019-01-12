@@ -4,10 +4,9 @@ python:
   - "3.5"
   - "2.7"
 
-jobs:
-  include:
-    - stage: test
-      install: make install
-      script: make test
-    - stage: lint
-      script: make lint
+install:
+  - make install
+
+script:
+  - make lint
+  - make test
