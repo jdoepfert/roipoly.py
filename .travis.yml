@@ -7,14 +7,9 @@ python:
 install:
   - make install
 
-script:
-  - make lint
-  - make test
-
 jobs:
   include:
     - stage: "Tests"                # naming the Tests stage
-      name: "Unit Tests"            # names the first Tests stage job
       script: make test
-    - script: make lint
-      name: "Linter"     # names the second Tests stage job
+    - stage: "Linter"                # naming the Tests stage
+      script: make lint
