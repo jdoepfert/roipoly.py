@@ -1,7 +1,8 @@
 # Changelog
 
-## [unreleased] - 2019-XX-XX
+## [unreleased]
 * fix readme
+* add makefile
 
 ## [0.2.0] - 2019-01-08
 * make installable package
