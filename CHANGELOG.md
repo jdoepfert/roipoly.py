@@ -3,6 +3,8 @@
 ## [unreleased]
 * fix readme
 * add makefile
+* add linter
+* add code coverage report
 
 ## [0.2.0] - 2019-01-08
 * make installable package
