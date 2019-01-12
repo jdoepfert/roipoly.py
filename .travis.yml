@@ -9,3 +9,9 @@ install:
 
 script:
   - make test
+
+jobs:
+  include:
+    - stage: "Linter"
+      python: 3.5
+      script: make lint
