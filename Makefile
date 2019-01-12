@@ -7,7 +7,7 @@ install: init
 	pip install .
 
 test:
-	nosetests -v tests
+	nosetests -v tests --with-coverage --cover-package=$(PROJECT) --cover-min-percentage=40
 
 lint:
 	flake8 $(PROJECT)
