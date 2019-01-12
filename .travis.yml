@@ -7,9 +7,11 @@ python:
 install:
   - make install
 
+script:
+  - make test
+
 jobs:
   include:
-    - stage: "Tests"                # naming the Tests stage
-      script: make test
-    - stage: "Linter"                # naming the Tests stage
+    - stage: "Linter"
+      python: 3.5
       script: make lint
