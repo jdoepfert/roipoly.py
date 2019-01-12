@@ -1,3 +1,5 @@
+PROJECT = roipoly
+
 init:
 	pip install -r requirements.txt
 
@@ -6,6 +8,9 @@ install: init
 
 test:
 	nosetests -v tests
+
+lint:
+	flake8 $(PROJECT)
 
 run_example:
 	python examples/example.py

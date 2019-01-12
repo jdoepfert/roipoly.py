@@ -1,4 +1,4 @@
-from .roipoly import RoiPoly
-from .roipoly import roipoly  # compatibility for old versions
+from .roipoly import RoiPoly  # noqa
+from .roipoly import roipoly  # noqa / for compatibility with old versions
 
-from .version import __version__
+from .version import __version__  # noqa
