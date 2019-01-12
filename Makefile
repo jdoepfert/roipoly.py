@@ -15,4 +15,4 @@ lint:
 run_example:
 	python examples/example.py
 
-.PHONY: init test install run_example
+.PHONY: init test install run_example lint
