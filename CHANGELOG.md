@@ -5,6 +5,7 @@
 * add makefile
 * add linter
 * add code coverage report
+* switched to pytest
 
 ## [0.2.0] - 2019-01-08
 * make installable package
