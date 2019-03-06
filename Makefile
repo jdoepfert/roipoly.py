@@ -7,7 +7,7 @@ install: init
 	pip install .
 
 test:
-	nosetests -v tests --with-coverage --cover-package=$(PROJECT) --cover-min-percentage=40
+	pytest --cov=$(PROJECT) --cov-branch  --cov-report=term-missing
 
 lint:
 	flake8 $(PROJECT)
