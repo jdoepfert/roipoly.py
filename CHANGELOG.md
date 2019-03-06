@@ -1,11 +1,13 @@
 # Changelog
 
 ## [unreleased]
+
+## [0.3.0] - 2019-03-06
 * fix readme
 * add makefile
 * add linter
 * add code coverage report
-* switched to pytest
+* switch to pytest
 
 ## [0.2.0] - 2019-01-08
 * make installable package
