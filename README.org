@@ -12,9 +12,8 @@ an image that is stored as a numpy array. The usage is similar to the
 Run ~pip install git+https://github.com/jdoepfert/roipoly.py~.
 
 ** Running the example
-Copy the example you want to run from the ~examples~ directory and run it e.g. like so:
 #+begin_SRC shell
-python example.py
+python examples/example.py
 #+end_SRC
 
 ** Usage
