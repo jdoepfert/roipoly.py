@@ -11,9 +11,16 @@ an image that is stored as a numpy array. The usage is similar to the
 ** Installation
 Run ~pip install git+https://github.com/jdoepfert/roipoly.py~.
 
-** Running the example
+** Running the examples
+
+Basic usage:
 #+begin_SRC shell
-python examples/example.py
+python examples/basic_example.py
+#+end_SRC
+
+Drawing multiple ROIs:
+#+begin_SRC shell
+python examples/multi_roi_example.py
 #+end_SRC
 
 ** Usage
@@ -74,6 +81,9 @@ in an image over that ROI:
 #+begin_SRC python 
 mean = plt.mean(image[mask])
 #+end_SRC
+
+*** Drawing multiple ROIs
+See `examples/multi_roi_example.py`
 
 ** Credits
 Based on a code snippet originally posted [[http://matplotlib.1069221.n5.nabble.com/How-to-draw-a-region-of-interest-td4972.html][here]]  by Daniel Kornhauser.

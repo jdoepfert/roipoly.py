@@ -1,7 +1,7 @@
 """Draw polygon regions of interest (ROIs) in matplotlib images,
 similar to Matlab's roipoly function.
 
-See the file example.py for an application.
+See examples/basic_example.py for an application.
 
 Created by Joerg Doepfert 2014 based on code posted by Daniel
 Kornhauser.
@@ -15,6 +15,7 @@ import warnings
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.path import Path as MplPath
+from matplotlib.widgets import Button
 
 logger = logging.getLogger(__name__)
 
@@ -27,8 +28,23 @@ def deprecation(message):
 
 class RoiPoly:
 
-    def __init__(self, fig=None, ax=None, color='b',
-                 roicolor=None, show_fig=True):
+    def __init__(self, fig=None, color='b',
+                 roicolor=None, show_fig=True, close_fig=True):
+        """
+
+        Parameters
+        ----------
+        fig: matplotlib figure
+            Figure on which to create the ROI
+        color: str
+           Color of the ROI
+        roicolor: str
+            deprecated, use `color` instead
+        show_fig: bool
+            Display the figure upon initializing a RoiPoly object
+        close_fig: bool
+            Close the figure after finishing ROI drawing
+        """
 
         if roicolor is not None:
             deprecation("Use 'color' instead of 'roicolor'!")
@@ -37,18 +53,16 @@ class RoiPoly:
         if fig is None:
             fig = plt.gcf()
 
-        if ax is None:
-            ax = plt.gca()
-
         self.start_point = []
         self.end_point = []
         self.previous_point = []
         self.x = []
         self.y = []
         self.line = None
+        self.completed = False  # Has ROI drawing completed?
         self.color = color
         self.fig = fig
-        self.ax = ax
+        self.close_figure = close_fig
 
         # Mouse event callbacks
         self.__cid1 = self.fig.canvas.mpl_connect(
@@ -64,7 +78,7 @@ class RoiPoly:
         if sys.flags.interactive:
             plt.show(block=False)
         else:
-            plt.show()
+            plt.show(block=True)
 
     def get_mask(self, current_image):
         ny, nx = np.shape(current_image)
@@ -110,7 +124,7 @@ class RoiPoly:
                 y_data = [self.previous_point[1], y]
                 logger.debug("draw line x: {} y: {}".format(x_data, y_data))
                 self.line.set_data(x_data, y_data)
-                self.fig.canvas.draw()
+                self.fig.canvas.make_buttons()
 
     def __button_press_callback(self, event):
         if event.inaxes:
@@ -127,7 +141,7 @@ class RoiPoly:
                     self.y = [y]
 
                     ax.add_line(self.line)
-                    self.fig.canvas.draw()
+                    self.fig.canvas.make_buttons()
                     # Add a segment
                 else:
                     # If there is a line, create a segment
@@ -142,7 +156,7 @@ class RoiPoly:
                     self.y.append(y)
 
                     event.inaxes.add_line(self.line)
-                    self.fig.canvas.draw()
+                    self.fig.canvas.make_buttons()
 
             elif (((event.button == 1 and event.dblclick is True) or
                    (event.button == 3 and event.dblclick is False)) and
@@ -158,12 +172,11 @@ class RoiPoly:
                                    [self.previous_point[1],
                                     self.start_point[1]])
                 ax.add_line(self.line)
-                self.fig.canvas.draw()
+                self.fig.canvas.make_buttons()
                 self.line = None
+                self.completed = True
 
-                if sys.flags.interactive:
-                    pass
-                else:
+                if not sys.flags.interactive and self.close_figure:
                     #  Figure has to be closed so that code can continue
                     plt.close(self.fig)
 
@@ -185,3 +198,57 @@ class RoiPoly:
 def roipoly(*args, **kwargs):
     deprecation("Import 'RoiPoly' instead of 'roipoly'!")
     return RoiPoly(*args, **kwargs)
+
+
+class MultiRoi:
+    def __init__(self,
+                 fig=None,
+                 color_cycle=('b', 'g', 'r', 'c', 'm', 'y', 'k')
+                 ):
+
+        if fig is None:
+            fig = plt.gcf()
+
+        self.color_cycle = color_cycle
+        self.fig = fig
+        self.rois = []
+
+        self.make_buttons()
+
+    def make_buttons(self):
+        ax_add_btn = plt.axes([0.7, 0.02, 0.1, 0.04])
+        ax_finish_btn = plt.axes([0.81, 0.02, 0.1, 0.04])
+        btn_finish = Button(ax_finish_btn, 'Finish')
+        btn_finish.on_clicked(self.finish)
+        btn_add = Button(ax_add_btn, 'New ROI')
+        btn_add.on_clicked(self.add)
+        plt.show(block=True)
+
+    def add(self, event):
+        """"Add a new ROI"""
+
+        # Only draw a new ROI if the previous one is completed
+        if self.rois:
+            last_roi = self.rois[-1]
+            if not last_roi.completed:
+                return
+
+        count = len(self.rois)
+        idx = count % len(self.color_cycle)
+        logger.debug("Creating new ROI {}".format(count))
+        roi = RoiPoly(color=self.color_cycle[idx],
+                      fig=self.fig,
+                      close_fig=False,
+                      show_fig=False)
+        self.rois.append(roi)
+
+    def finish(self, event):
+        logger.debug("Stop ROI drawing")
+        plt.close(self.fig)
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-"""Test if the old example.py still works
+"""Test if the old example still works
 (commit 80737fa9d66d839e52b40d7cadcf02e143a86b4a)"""
 import pylab as pl
 from roipoly import roipoly
