@@ -16,7 +16,7 @@ img = np.ones((100, 100)) * range(0, 100)
 fig = plt.figure()
 plt.imshow(img, interpolation='nearest', cmap="Greys")
 plt.colorbar()
-plt.title("left click: line segment         right click: close region")
+plt.title("left click: line segment         right click or double click: close region")
 plt.show(block=False)
 
 # Let user draw first ROI
@@ -36,8 +36,9 @@ roi2 = RoiPoly(color='b', fig=fig)
 # Show the image with both ROIs and their mean values
 plt.imshow(img, interpolation='nearest', cmap="Greys")
 plt.colorbar()
-[x.display_roi() for x in [roi1, roi2]]
-[x.display_mean(img) for x in [roi1, roi2]]
+for roi in [roi1, roi2]:
+    roi.display_roi()
+    roi.display_mean(img)
 plt.title('The two ROIs')
 plt.show()
 
