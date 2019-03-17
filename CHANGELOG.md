@@ -1,6 +1,7 @@
 # Changelog
 
 ## [unreleased]
+* remove logger from example
 
 ## [0.3.0] - 2019-03-06
 * fix readme
