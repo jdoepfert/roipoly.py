@@ -83,7 +83,7 @@ mean = plt.mean(image[mask])
 #+end_SRC
 
 *** Drawing multiple ROIs
-See `examples/multi_roi_example.py`
+See =examples/multi_roi_example.py=
 
 ** Credits
 Based on a code snippet originally posted [[http://matplotlib.1069221.n5.nabble.com/How-to-draw-a-region-of-interest-td4972.html][here]]  by Daniel Kornhauser.
