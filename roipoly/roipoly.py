@@ -124,7 +124,7 @@ class RoiPoly:
                 y_data = [self.previous_point[1], y]
                 logger.debug("draw line x: {} y: {}".format(x_data, y_data))
                 self.line.set_data(x_data, y_data)
-                self.fig.canvas.make_buttons()
+                self.fig.canvas.draw()
 
     def __button_press_callback(self, event):
         if event.inaxes:
@@ -141,7 +141,7 @@ class RoiPoly:
                     self.y = [y]
 
                     ax.add_line(self.line)
-                    self.fig.canvas.make_buttons()
+                    self.fig.canvas.draw()
                     # Add a segment
                 else:
                     # If there is a line, create a segment
@@ -156,7 +156,7 @@ class RoiPoly:
                     self.y.append(y)
 
                     event.inaxes.add_line(self.line)
-                    self.fig.canvas.make_buttons()
+                    self.fig.canvas.draw()
 
             elif (((event.button == 1 and event.dblclick is True) or
                    (event.button == 3 and event.dblclick is False)) and
@@ -172,7 +172,7 @@ class RoiPoly:
                                    [self.previous_point[1],
                                     self.start_point[1]])
                 ax.add_line(self.line)
-                self.fig.canvas.make_buttons()
+                self.fig.canvas.draw()
                 self.line = None
                 self.completed = True
 
