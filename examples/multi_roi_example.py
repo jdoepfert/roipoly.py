@@ -15,15 +15,18 @@ img = np.ones((100, 100)) * range(0, 100)
 # Show the image
 fig = plt.figure()
 plt.imshow(img, interpolation='nearest', cmap="Greys")
-plt.colorbar()
-
-# Add multiple ROIs
 plt.title("Click on the button to add a new ROI")
-multiroi = MultiRoi(fig=fig)
+
+# Draw multiple ROIs
+multiroi_named = MultiRoi(roi_names=['My first ROI', 'My second ROI'])
 
 # Draw all ROIs
 plt.imshow(img, interpolation='nearest', cmap="Greys")
-for roi in multiroi.rois:
+roi_names = []
+for name, roi in multiroi_named.rois.items():
     roi.display_roi()
     roi.display_mean(img)
+    roi_names.append(name)
+plt.legend(roi_names, bbox_to_anchor=(1.2, 1.05))
 plt.show()
+

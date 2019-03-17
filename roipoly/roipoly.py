@@ -1,11 +1,5 @@
 """Draw polygon regions of interest (ROIs) in matplotlib images,
 similar to Matlab's roipoly function.
-
-See examples/basic_example.py for an application.
-
-Created by Joerg Doepfert 2014 based on code posted by Daniel
-Kornhauser.
-
 """
 
 import sys
@@ -194,24 +188,39 @@ class RoiPoly:
         return self.display_roi(*args, **kwargs)
 
 
-# For compatibility with old version
-def roipoly(*args, **kwargs):
-    deprecation("Import 'RoiPoly' instead of 'roipoly'!")
-    return RoiPoly(*args, **kwargs)
-
-
 class MultiRoi:
     def __init__(self,
-                 fig=None,
+                 fig=None, ax=None,
+                 roi_names=None,
                  color_cycle=('b', 'g', 'r', 'c', 'm', 'y', 'k')
                  ):
+        """
+
+        Parameters
+        ----------
+        fig: matplotlib figure
+            Figure on which to draw the ROIs
+        ax: matplotlib axes
+           Axes on which to draw the ROIs
+        roi_names: list of str
+            Optional names for the ROIs to draw.
+            The ROIs can later be retrieved by using these names as keys for
+            the `self.rois` dictionary. If None, consecutive numbers are used
+            as ROI names
+        color_cycle: list of str
+            List of matplotlib colors for the ROIs
+        """
 
         if fig is None:
             fig = plt.gcf()
+        if ax is None:
+            ax = fig.gca()
 
         self.color_cycle = color_cycle
+        self.roi_names = roi_names
         self.fig = fig
-        self.rois = []
+        self.ax = ax
+        self.rois = {}
 
         self.make_buttons()
 
@@ -229,19 +238,31 @@ class MultiRoi:
 
         # Only draw a new ROI if the previous one is completed
         if self.rois:
-            last_roi = self.rois[-1]
-            if not last_roi.completed:
+            if not all(r.completed for r in self.rois.values()):
                 return
 
         count = len(self.rois)
         idx = count % len(self.color_cycle)
         logger.debug("Creating new ROI {}".format(count))
+        if self.roi_names is not None and idx < len(self.roi_names):
+            roi_name = self.roi_names[idx]
+        else:
+            roi_name = str(count + 1)
+
+        self.ax.set_title("Draw ROI '{}'".format(roi_name))
+        plt.draw()
         roi = RoiPoly(color=self.color_cycle[idx],
                       fig=self.fig,
                       close_fig=False,
                       show_fig=False)
-        self.rois.append(roi)
+        self.rois[roi_name] = roi
 
     def finish(self, event):
         logger.debug("Stop ROI drawing")
         plt.close(self.fig)
+
+
+# For compatibility with old version
+def roipoly(*args, **kwargs):
+    deprecation("Import 'RoiPoly' instead of 'roipoly'!")
+    return RoiPoly(*args, **kwargs)
