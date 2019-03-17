@@ -245,10 +245,3 @@ class MultiRoi:
     def finish(self, event):
         logger.debug("Stop ROI drawing")
         plt.close(self.fig)
-
-
-
-
-
-
-
