@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.0] - 2019-03-07
+* add to pipy
+
 ## [0.4.0] - 2019-03-07
 * remove logger from example
 * remove list comprehension from basic example
