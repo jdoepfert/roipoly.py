@@ -1,11 +1,12 @@
 # Changelog
 
-## [unreleased]
+## [0.4.0] - 2019-03-07
 * remove logger from example
 * remove list comprehension from basic example
 * remove unused `self.ax` from `RoiPoly`
 * add docstring to `RoiPoly`
 * Allow drawing of multiple ROIs (`MultiRoi`class)
+
 ## [0.3.0] - 2019-03-06
 * fix readme
 * add makefile
