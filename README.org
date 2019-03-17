@@ -9,9 +9,9 @@ an image that is stored as a numpy array. The usage is similar to the
 [[file:/img/ROIs.PNG]]
 
 ** Installation
-From PyPi: ~pip install roipoly~.
+Either from PyPi: ~pip install roipoly~
 
-Get the latest version from github: ~pip install git+https://github.com/jdoepfert/roipoly.py~.
+Or get the latest version from github: ~pip install git+https://github.com/jdoepfert/roipoly.py~
 
 ** Running the examples
 
