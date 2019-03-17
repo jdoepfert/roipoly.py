@@ -24,6 +24,9 @@ dist:
 upload: .git-no-changes
 	twine upload dist/*
 
+download:
+	pip install $(PROJECT)
+
 .git-no-changes:
 	@if git diff --name-only --exit-code;         \
 	then                                          \
