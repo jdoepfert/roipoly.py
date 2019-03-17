@@ -16,7 +16,7 @@ img = np.ones((100, 100)) * range(0, 100)
 fig = plt.figure()
 plt.imshow(img, interpolation='nearest', cmap="Greys")
 plt.colorbar()
-plt.title("left click: line segment         right click: close region")
+plt.title("left click: line segment         right click or double click: close region")
 plt.show(block=False)
 
 # Let user draw first ROI
