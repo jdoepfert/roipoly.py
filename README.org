@@ -4,7 +4,7 @@
 
 Small python module to select a polygonal region of interest (ROI) in
 an image that is stored as a numpy array. The usage is similar to the
-[[http://www.mathworks.de/de/help/images/ref/roipoly.html][roipoly]] function present in the image processing toolbox from MATLAB.
+[https://mathworks.com/help/images/ref/roipoly.html][roipoly]] function present in the image processing toolbox from MATLAB.
 
 [[file:/img/ROIs.PNG]]
 
