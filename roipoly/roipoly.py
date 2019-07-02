@@ -227,12 +227,15 @@ class MultiRoi:
     def make_buttons(self):
         ax_add_btn = plt.axes([0.7, 0.02, 0.1, 0.04])
         ax_finish_btn = plt.axes([0.81, 0.02, 0.1, 0.04])
-        ax_text = plt.axes([0.2, 0.02, 0.4, 0.1])
+        ax_text = plt.axes([0.17, 0.01, 0.52, 0.079],
+                           xticks=[], yticks=[])
         btn_finish = Button(ax_finish_btn, 'Finish')
         btn_finish.on_clicked(self.finish)
         btn_add = Button(ax_add_btn, 'New ROI')
         btn_add.on_clicked(self.add)
-        ax_text.text(0,0, 'Left-click to place, Right-click to finish polygon.')
+        ax_text.text(0.01, 0.1,
+                     'Left-click to place a vertex.\n'
+                     'Right-click to close the polygon.')
         plt.show(block=True)
 
     def add(self, event):
