@@ -22,7 +22,7 @@ def deprecation(message):
 
 class RoiPoly:
 
-    def __init__(self, fig=None, color='b',
+    def __init__(self, fig=None, ax=None, color='b',
                  roicolor=None, show_fig=True, close_fig=True):
         """
 
@@ -46,6 +46,8 @@ class RoiPoly:
 
         if fig is None:
             fig = plt.gcf()
+        if ax is None:
+            ax = plt.gca()
 
         self.start_point = []
         self.end_point = []
@@ -56,6 +58,7 @@ class RoiPoly:
         self.completed = False  # Has ROI drawing completed?
         self.color = color
         self.fig = fig
+        self.ax = ax
         self.close_figure = close_fig
 
         # Mouse event callbacks
@@ -109,7 +112,7 @@ class RoiPoly:
                  bbox=dict(facecolor='w', alpha=0.6), **textkwargs)
 
     def __motion_notify_callback(self, event):
-        if event.inaxes:
+        if event.inaxes == self.ax:
             x, y = event.xdata, event.ydata
             if ((event.button is None or event.button == 1) and
                     self.line is not None):
@@ -121,7 +124,7 @@ class RoiPoly:
                 self.fig.canvas.draw()
 
     def __button_press_callback(self, event):
-        if event.inaxes:
+        if event.inaxes == self.ax:
             x, y = event.xdata, event.ydata
             ax = event.inaxes
             if event.button == 1 and event.dblclick is False:
@@ -253,6 +256,7 @@ class MultiRoi:
         plt.draw()
         roi = RoiPoly(color=self.color_cycle[idx],
                       fig=self.fig,
+                      ax=self.ax,
                       close_fig=False,
                       show_fig=False)
         self.rois[roi_name] = roi
