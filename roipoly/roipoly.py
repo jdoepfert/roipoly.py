@@ -30,6 +30,8 @@ class RoiPoly:
         ----------
         fig: matplotlib figure
             Figure on which to create the ROI
+        ax: matplotlib axes
+           Axes on which to draw the ROI
         color: str
            Color of the ROI
         roicolor: str
