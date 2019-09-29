@@ -1,5 +1,9 @@
 # Changelog
 
+
+## [0.5.1] - 2019-09-29
+* no drawing outside of ROI
+
 ## [0.5.0] - 2019-03-07
 * add to pipy
 
