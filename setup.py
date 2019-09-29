@@ -9,7 +9,7 @@ setup(
     version=meta['__version__'],
     description='Tool to draw regions of interest (ROIs)',
     long_description=meta['long_description'],
-
+    long_description_content_type='text/plain',
     author='Joerg Doepfert',
     author_email='joerg.doepfert@gmx.net',
     url='https://github.com/jdoepfert/roipoly.py',

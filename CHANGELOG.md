@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.5.2] - 2019-09-29
+* setup.py: change long description type
 
 ## [0.5.1] - 2019-09-29
 * no drawing outside of ROI
