@@ -1,7 +1,7 @@
 """Draw polygon regions of interest (ROIs) in matplotlib images,
 similar to Matlab's roipoly function.
 """
-
+import os
 import sys
 import logging
 import warnings
@@ -69,15 +69,18 @@ class RoiPoly:
         self.__cid2 = self.fig.canvas.mpl_connect(
             'button_press_event', self.__button_press_callback)
 
+        # determine the type of environment
+        using_spyder = any(['SPYDER' in x for x in os.environ])
+        self.interactive = sys.flags.interactive or using_spyder
+
         if show_fig:
             self.show_figure()
 
-    @staticmethod
-    def show_figure():
-        if sys.flags.interactive:
+    def show_figure(self):
+        while (not self.completed) and self.interactive:
             plt.show(block=False)
-        else:
-            plt.show(block=True)
+            plt.pause(0.1)
+        plt.show(block=True)
 
     def get_mask(self, current_image):
         ny, nx = np.shape(current_image)
@@ -175,7 +178,7 @@ class RoiPoly:
                 self.line = None
                 self.completed = True
 
-                if not sys.flags.interactive and self.close_figure:
+                if self.close_figure:
                     #  Figure has to be closed so that code can continue
                     plt.close(self.fig)
 
