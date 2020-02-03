@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 from matplotlib.path import Path as MplPath
 from matplotlib.widgets import Button
 
+USING_SPYDER = any(['SPYDER' in x for x in os.environ])
+
 logger = logging.getLogger(__name__)
 
 warnings.simplefilter('always', DeprecationWarning)
@@ -69,9 +71,8 @@ class RoiPoly:
         self.__cid2 = self.fig.canvas.mpl_connect(
             'button_press_event', self.__button_press_callback)
 
-        # determine the type of environment
-        using_spyder = any(['SPYDER' in x for x in os.environ])
-        self.interactive = sys.flags.interactive or using_spyder
+        # Determine the type of environment
+        self.interactive = sys.flags.interactive or USING_SPYDER
 
         if show_fig:
             self.show_figure()
