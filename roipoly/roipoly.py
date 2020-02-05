@@ -11,7 +11,10 @@ import matplotlib.pyplot as plt
 from matplotlib.path import Path as MplPath
 from matplotlib.widgets import Button
 
-USING_SPYDER = any(['SPYDER' in x for x in os.environ])
+USING_SPYDER = any(x in os.environ for x in ['SPYDER_ARGS',
+                                             'SPYDER_PID',
+                                             'SPYDER_IS_BOOSTRAP',
+                                             'SPYDER_RESET'])
 
 logger = logging.getLogger(__name__)
 
