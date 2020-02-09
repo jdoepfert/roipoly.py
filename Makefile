@@ -16,7 +16,7 @@ lint:
 	flake8 $(PROJECT) tests
 
 run_example:
-	python examples/example.py
+	python examples/basic_example.py
 
 dist:
 	python setup.py sdist
