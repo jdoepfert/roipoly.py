@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 from matplotlib.path import Path as MplPath
 from matplotlib.widgets import Button
 
+# See if any SPYDER-related variables exist. Source of variables:
+# https://github.com/spyder-ide/spyder/blob/aa9fdaf7379577bdc7c2aa1e2bdc3feb82be953b/spyder/app/restart.py#L189
 USING_SPYDER = any(x in os.environ for x in ['SPYDER_ARGS',
                                              'SPYDER_PID',
                                              'SPYDER_IS_BOOSTRAP',
