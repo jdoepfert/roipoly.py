@@ -80,7 +80,7 @@ class RoiPoly:
             plt.show(block=True)
 
     def get_mask(self, current_image):
-        ny, nx = np.shape(current_image)
+        ny, nx = np.shape(current_image)[0:2]
         poly_verts = ([(self.x[0], self.y[0])]
                       + list(zip(reversed(self.x), reversed(self.y))))
         # Create vertex coordinates for each grid cell...
@@ -99,6 +99,7 @@ class RoiPoly:
         ax = plt.gca()
         ax.add_line(line)
         plt.draw()
+        self.show_figure()
 
     def get_mean_and_std(self, current_image):
         mask = self.get_mask(current_image)
