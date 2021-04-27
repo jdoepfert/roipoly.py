@@ -4,5 +4,6 @@ numpy==1.14.3; python_version < '3'
 numpy==1.18.1; python_version > '3'
 pytest==4.0.0; python_version < '3'
 pytest==5.4.3; python_version > '3'
-pytest-cov==2.11.1
+pytest-cov==2.6.0; python_version < '3'
+pytest-cov==2.11.1; python_version > '3'
 flake8==3.7.9
