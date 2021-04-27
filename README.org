@@ -68,6 +68,11 @@ image, type
 #+begin_SRC python 
 my_roi.display_mean(image)
 #+end_SRC
+Note that you can only pass 2D images to =display_mean()=! If you have e.g.
+an RGB-image with dimension 3, you need to make the call like so:
+#+begin_SRC python
+mask = my_roi.display_mean(rgb_image[:, :, 0])
+#+end_SRC
 
 *** Extracting a binary mask image
 The function =get_mask()= creates a binary mask for a certain ROI
@@ -79,8 +84,8 @@ mask = my_roi.get_mask(image)
 plt.imshow(mask) # show the binary signal mask
 #+end_SRC
 
-Note that you can only pass 2D images to =get_mask()=! If you have an RGB-image
-with dimension 3, you need to make the call like so:
+Note that you can only pass 2D images to =get_mask()=, If you have e.g.
+an RGB-image with dimension 3, you need to make the call like so:
 #+begin_SRC python
 mask = my_roi.get_mask(rgb_image[:, :, 0])
 #+end_SRC
