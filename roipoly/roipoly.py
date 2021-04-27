@@ -129,7 +129,7 @@ class RoiPoly:
         if event.inaxes == self.ax:
             x, y = event.xdata, event.ydata
             ax = event.inaxes
-            if event.button == 1 and event.dblclick is False:
+            if event.button == 1 and not event.dblclick:
                 logger.debug("Received single left mouse button click")
                 if self.line is None:  # If there is no line, create a line
                     self.line = plt.Line2D([x, x], [y, y],
@@ -157,8 +157,8 @@ class RoiPoly:
                     event.inaxes.add_line(self.line)
                     self.fig.canvas.draw()
 
-            elif (((event.button == 1 and event.dblclick is True) or
-                   (event.button == 3 and event.dblclick is False)) and
+            elif (((event.button == 1 and event.dblclick) or
+                   (event.button == 3 and not event.dblclick)) and
                   self.line is not None):
                 # Close the loop and disconnect
                 logger.debug("Received single right mouse button click or "
