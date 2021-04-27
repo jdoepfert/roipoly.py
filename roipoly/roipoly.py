@@ -79,8 +79,22 @@ class RoiPoly:
         else:
             plt.show(block=True)
 
-    def get_mask(self, current_image):
-        ny, nx = np.shape(current_image)
+    def get_mask(self, image):
+        """Get binary mask of the ROI polygon.
+
+        Parameters
+        ----------
+        image: numpy array (2D)
+            Image that the mask should be based on. Only used for determining
+            the shape of the binary mask (which is made equal to the shape of
+            the image)
+
+        Returns
+        -------
+        numpy array (2D)
+
+        """
+        ny, nx = np.shape(image)
         poly_verts = ([(self.x[0], self.y[0])]
                       + list(zip(reversed(self.x), reversed(self.y))))
         # Create vertex coordinates for each grid cell...
@@ -90,8 +104,8 @@ class RoiPoly:
         points = np.vstack((x, y)).T
 
         roi_path = MplPath(poly_verts)
-        grid = roi_path.contains_points(points).reshape((ny, nx))
-        return grid
+        mask = roi_path.contains_points(points).reshape((ny, nx))
+        return mask
 
     def display_roi(self, **linekwargs):
         line = plt.Line2D(self.x + [self.x[0]], self.y + [self.y[0]],
@@ -100,14 +114,39 @@ class RoiPoly:
         ax.add_line(line)
         plt.draw()
 
-    def get_mean_and_std(self, current_image):
-        mask = self.get_mask(current_image)
-        mean = np.mean(np.extract(mask, current_image))
-        std = np.std(np.extract(mask, current_image))
+    def get_mean_and_std(self, image):
+        """Get statistics about pixel values of an image inside the ROI.
+
+        Parameters
+        ----------
+        image: numpy array (2D)
+            Image on which the statistics should be calculated
+
+        Returns
+        -------
+        list of float:
+            mean and standard deviation of the pixel values inside the ROI
+
+        """
+        mask = self.get_mask(image)
+        mean = np.mean(np.extract(mask, image))
+        std = np.std(np.extract(mask, image))
         return mean, std
 
-    def display_mean(self, current_image, **textkwargs):
-        mean, std = self.get_mean_and_std(current_image)
+    def display_mean(self, image, **textkwargs):
+        """Display statistics about pixel values of an image inside the ROI.
+
+        Parameters
+        ----------
+        image: numpy array (2D)
+            Image on which the statistics should be calculated
+
+        Returns
+        -------
+        None
+
+        """
+        mean, std = self.get_mean_and_std(image)
         string = "%.3f +- %.3f" % (mean, std)
         plt.text(self.x[0], self.y[0],
                  string, color=self.color,

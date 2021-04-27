@@ -1,7 +1,7 @@
 language: python
 
 python:
-  - "3.5"
+  - "3.7"
   - "2.7"
 
 install:
@@ -13,5 +13,5 @@ script:
 jobs:
   include:
     - stage: "Linter"
-      python: 3.5
+      python: 3.7
       script: make lint
