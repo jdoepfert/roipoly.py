@@ -91,6 +91,7 @@ class RoiPoly:
 
         roi_path = MplPath(poly_verts)
         grid = roi_path.contains_points(points).reshape((ny, nx))
+        grid=grid if current_image.ndim!=3 else np.dstack(tuple([grid for i in range(current_image.shape[2])]))
         return grid
 
     def display_roi(self, **linekwargs):
