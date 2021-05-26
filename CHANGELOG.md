@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.4] - 2021-04-27
+* Update documentation and docstrings
+* Add python 3.7 to CI
+* Update requirements.txt with new pinned versions
+ 
+## [0.5.3] - 2021-04-27
+* Shorten `event.dblclick is True` to `event.dblclick` and
+ `event.dblclick is False` to `not event.dblclick`
+
 ## [0.5.2] - 2019-09-29
 * setup.py: change long description type
 
