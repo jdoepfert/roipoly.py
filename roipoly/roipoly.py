@@ -168,8 +168,8 @@ class RoiPoly:
 
         """
         ny, nx = np.shape(image)
-        poly_verts = list(zip(self.x, self.y))
-        return poly_verts
+        roi_coordinates = list(zip(self.x, self.y))
+        return roi_coordinates
 
     def __motion_notify_callback(self, event):
         if event.inaxes == self.ax:
