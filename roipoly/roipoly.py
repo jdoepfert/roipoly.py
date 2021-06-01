@@ -151,8 +151,8 @@ class RoiPoly:
         plt.text(self.x[0], self.y[0],
                  string, color=self.color,
                  bbox=dict(facecolor='w', alpha=0.6), **textkwargs)
-    
-    def get_roi_coordinates(self,image):
+
+    def get_roi_coordinates(self, image):
         """Get co-ordinates of the ROI polygon.
 
         Parameters
