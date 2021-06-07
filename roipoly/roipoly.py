@@ -152,22 +152,14 @@ class RoiPoly:
                  string, color=self.color,
                  bbox=dict(facecolor='w', alpha=0.6), **textkwargs)
 
-    def get_roi_coordinates(self, image):
+    def get_roi_coordinates(self):
         """Get co-ordinates of the ROI polygon.
-
-        Parameters
-        ----------
-        image: numpy array (2D)
-            Image that the mask should be based on. Only used for determining
-            the shape of the binary mask (which is made equal to the shape of
-            the image)
 
         Returns
         -------
         numpy array (2D)
 
         """
-        ny, nx = np.shape(image)
         roi_coordinates = list(zip(self.x, self.y))
         return roi_coordinates
 

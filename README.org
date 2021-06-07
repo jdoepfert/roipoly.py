@@ -98,13 +98,7 @@ mean = plt.mean(image[mask])
 
 *** To get the ROI coordinates [(x1, y1), (x2, y2), ...]:
 #+begin_SRC python
-roi_coordinates=my_roi.get_roi_coordinates(image)
-#+end_SRC
-
-Note that you can only pass 2D images to =get_roi_coordinates()=, If you have e.g.
-an RGB-image with dimension 3, you need to make the call like so:
-#+begin_SRC python
-mask = my_roi.get_roi_coordinates(rgb_image[:, :, 0])
+roi_coordinates=my_roi.get_roi_coordinates()
 #+end_SRC
 
 *** Drawing multiple ROIs

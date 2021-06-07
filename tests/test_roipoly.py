@@ -57,7 +57,7 @@ def test_get_mean_and_std(roi1, img1, roi1_expected_mask):
     np.testing.assert_almost_equal(std, expected_std)
 
 
-def test_get_roi_coordinates(roi1, img1):
-    roi_coordinates = roi1.get_roi_coordinates(img1)
+def test_get_roi_coordinates(roi1):
+    roi_coordinates = roi1.get_roi_coordinates()
     expected_roi_coordinates = list(zip(roi1.x, roi1.y))
     np.testing.assert_equal(roi_coordinates, expected_roi_coordinates)
