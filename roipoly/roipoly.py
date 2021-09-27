@@ -152,6 +152,17 @@ class RoiPoly:
                  string, color=self.color,
                  bbox=dict(facecolor='w', alpha=0.6), **textkwargs)
 
+    def get_roi_coordinates(self):
+        """Get co-ordinates of the ROI polygon.
+
+        Returns
+        -------
+        numpy array (2D)
+
+        """
+        roi_coordinates = list(zip(self.x, self.y))
+        return roi_coordinates
+
     def __motion_notify_callback(self, event):
         if event.inaxes == self.ax:
             x, y = event.xdata, event.ydata

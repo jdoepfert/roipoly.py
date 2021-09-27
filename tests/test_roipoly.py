@@ -42,6 +42,11 @@ def roi1_expected_mask():
     )
 
 
+@pytest.fixture()
+def expected_roi_coordinates():
+    return [(1, 1), (1, 3), (3, 3), (3, 1)]
+
+
 def test_get_mask(roi1, img1, roi1_expected_mask):
     result = roi1.get_mask(img1)
     np.testing.assert_array_equal(result, roi1_expected_mask)
@@ -55,3 +60,8 @@ def test_get_mean_and_std(roi1, img1, roi1_expected_mask):
     expected_std = np.nanstd(masked_img)
     np.testing.assert_almost_equal(mean, expected_mean)
     np.testing.assert_almost_equal(std, expected_std)
+
+
+def test_get_roi_coordinates(roi1, expected_roi_coordinates):
+    roi_coordinates = roi1.get_roi_coordinates()
+    np.testing.assert_equal(roi_coordinates, expected_roi_coordinates)
