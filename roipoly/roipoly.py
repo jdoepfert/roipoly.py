@@ -299,7 +299,7 @@ class MultiRoi:
         count = len(self.rois)
         idx = count % len(self.color_cycle)
         logger.debug("Creating new ROI {}".format(count))
-        if self.roi_names is not None and idx < len(self.roi_names):
+        if self.roi_names is not None and count < len(self.roi_names):
             roi_name = self.roi_names[idx]
         else:
             roi_name = str(count + 1)
