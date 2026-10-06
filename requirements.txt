@@ -1,5 +1,10 @@
-matplotlib>=3.5
-numpy>=1.20
-pytest>=7
-pytest-cov>=4
-flake8>=5
+matplotlib==2.2.0; python_version < '3'
+matplotlib>=3.5; python_version >= '3'
+numpy==1.14.3; python_version < '3'
+numpy>=1.20; python_version >= '3'
+pytest==4.0.0; python_version < '3'
+pytest>=7; python_version >= '3'
+pytest-cov==2.6.0; python_version < '3'
+pytest-cov>=4; python_version >= '3'
+flake8==3.7.9; python_version < '3'
+flake8>=5; python_version >= '3'
