@@ -42,24 +42,3 @@ jobs:
 
       - name: Run linter
         run: make lint
-
-  # Legacy best-effort job for old-school users still on Python 2.7.
-  # actions/setup-python no longer ships Python 2.7 builds for current
-  # Ubuntu runners, so this runs the test suite inside the archived
-  # python:2.7 Docker image instead. Checkout happens on the host
-  # runner (old images lack the Node runtime checkout needs), then the
-  # workspace is mounted into the container for install + test.
-  legacy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Run tests on Python 2.7
-        run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            -e MPLBACKEND=Agg \
-            python:2.7-slim \
-            bash -c "pip install -r requirements.txt && pip install . && pytest --cov=roipoly --cov-branch --cov-report=term-missing"

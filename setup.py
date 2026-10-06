@@ -13,7 +13,7 @@ setup(
     author='Joerg Doepfert',
     author_email='joerg.doepfert@gmx.net',
     url='https://github.com/jdoepfert/roipoly.py',
-    python_requires='>=2.7',
+    python_requires='>=3.8',
     install_requires=[
         'matplotlib',
         'numpy',
