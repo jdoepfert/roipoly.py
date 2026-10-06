@@ -3,7 +3,6 @@
 ## [1.0.0] - 2026-10-06
 * Drop Python 2.7 support (requires Python >= 3.8)
 * Migrate CI from Travis to GitHub Actions (test matrix 3.8-3.13 + lint)
-* Modernize dependency floors in requirements.txt
 
 ## [0.5.4] - 2021-04-27
 * Update documentation and docstrings
