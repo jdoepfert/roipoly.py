@@ -1,4 +1,4 @@
-[[file:https://travis-ci.org/jdoepfert/roipoly.py.svg?branch=master]]
+[[https://github.com/jdoepfert/roipoly.py/actions/workflows/ci.yml][file:https://github.com/jdoepfert/roipoly.py/actions/workflows/ci.yml/badge.svg]]
 
 * roipoly.py
 
